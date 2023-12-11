@@ -6,7 +6,7 @@
 /*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:23:11 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/05 17:44:48 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/11 19:00:39 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,73 @@ Vous devez bien sûr indiquer le temps utilisé pour effectuer toutes vos
 opérations, aussi bien la partie tri que la partie gestion des données.
 */
 
-int main(int argc, char **argv)
-{
-    if (argc < 2)
-    {
-        std::cout << "\x1b[38;5;205mError: no argument\x1b[0m" << std::endl;
-        return (0);
+// int main(int argc, char **argv)
+// {
+//     if (argc < 2)
+//     {
+//         std::cout << "\x1b[38;5;205mError: no argument\x1b[0m" << std::endl;
+//         return (0);
+//     }
+//     parseArgs(argc, argv);
+// }
+
+
+void fordJohnsonSort(std::deque<int>& arr) {
+    int n = arr.size();
+    bool flag = true;
+
+    while (flag) {
+        flag = false;
+        int p = -1;
+        for (int i = 0; i < n - 1; ++i) {
+            if (arr[i] > arr[i + 1]) {
+                p = i;
+                break;
+            }
+        }
+
+        if (p != -1) {
+            int q = p;
+            for (int i = p + 1; i < n; ++i) {
+                if (arr[i] < arr[p]) {
+                    q = i;
+                }
+            }
+
+            int temp = arr[q];
+            arr.erase(arr.begin() + q);
+            arr.insert(arr.begin() + p, temp);
+            flag = true;
+        }
     }
-    parseArgs(argc, argv);
+}
+
+int main() 
+{
+    std::deque<int> arr;
+
+    arr.push_back(7);
+    arr.push_back(123);
+    arr.push_back(99);
+    arr.push_back(56);
+    arr.push_back(0);
+    arr.push_back(15);
+    arr.push_back(14);
+    arr.push_back(51);
+    arr.push_back(751);
+    arr.push_back(11);
+    arr.push_back(178);
+    arr.push_back(71);
+    arr.push_back(221);
+    arr.push_back(2151);
+    arr.push_back(41);
+
+    fordJohnsonSort(arr);
+
+    for (int i = 0; i <= 15; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
 }
