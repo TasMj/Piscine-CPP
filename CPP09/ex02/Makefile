@@ -6,7 +6,7 @@
 #    By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 12:12:53 by tmejri            #+#    #+#              #
-#    Updated: 2023/12/11 18:58:45 by tmejri           ###   ########.fr        #
+#    Updated: 2023/12/11 19:03:43 by tmejri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 		= Pmerge
 
 OBJ_PATH 	= obj/
 
-SRC_NAME 	= Pmerge.cpp main.cpp \
+SRC_NAME 	= Pmerge.cpp main.cpp mergeSort.cpp \
 
 OBJ_NAME 	= $(SRC_NAME:.cpp=.o)
 

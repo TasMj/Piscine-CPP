@@ -6,7 +6,7 @@
 /*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:23:11 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/11 19:00:39 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/11 19:33:57 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,6 @@ opérations, aussi bien la partie tri que la partie gestion des données.
 //     parseArgs(argc, argv);
 // }
 
-
-void fordJohnsonSort(std::deque<int>& arr) {
-    int n = arr.size();
-    bool flag = true;
-
-    while (flag) {
-        flag = false;
-        int p = -1;
-        for (int i = 0; i < n - 1; ++i) {
-            if (arr[i] > arr[i + 1]) {
-                p = i;
-                break;
-            }
-        }
-
-        if (p != -1) {
-            int q = p;
-            for (int i = p + 1; i < n; ++i) {
-                if (arr[i] < arr[p]) {
-                    q = i;
-                }
-            }
-
-            int temp = arr[q];
-            arr.erase(arr.begin() + q);
-            arr.insert(arr.begin() + p, temp);
-            flag = true;
-        }
-    }
-}
 
 int main() 
 {

@@ -6,7 +6,7 @@
 /*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:25:29 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/11 18:53:10 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/11 19:50:38 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe &cpy);
 
 		/* function member */
-		// void	seperateContent(std::vector<int> args);
-		void	divCont(std::deque<int> halfCont);
-		void	mergeSort(std::deque<int> leftCont, std::deque<int> rightCont);
+		void	fordJohnsonSortDeq(std::deque<int>& arr);
+		void	fordJohnsonSortVec(std::vector<int>& arr);
+		void	displayRes();
+		void	printBefore();
 
     private:
 		int	sizeArg;
-		std::deque<int> sortedCont;
+		std::vector<int> args;
+		std::deque<int> dequeArr;
+		std::vector<int> vectArr;
 };
 
 /******************************************************************************/
@@ -49,6 +52,7 @@ class PmergeMe
 /******************************************************************************/
 
 bool parseArgs(int argc, char **argv);
+void fordJohnsonSort(std::deque<int>& arr);
 
 
 /******************************************************************************/
