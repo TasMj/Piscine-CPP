@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:23:11 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/11 19:33:57 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/12 00:31:52 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Pmerge.hpp"
 
 /*
-- seq d'entier positif comme arg
+x seq d'entier positif comme arg
 - trier entier avec l'algo de ford-Johnson
 - msg d'erreur precis en fonction de l'erreur
 - au moins 2 conteneurs
@@ -37,17 +37,20 @@ Vous devez bien sûr indiquer le temps utilisé pour effectuer toutes vos
 opérations, aussi bien la partie tri que la partie gestion des données.
 */
 
-// int main(int argc, char **argv)
-// {
-//     if (argc < 2)
-//     {
-//         std::cout << "\x1b[38;5;205mError: no argument\x1b[0m" << std::endl;
-//         return (0);
-//     }
-//     parseArgs(argc, argv);
-// }
+int main(int argc, char **argv)
+{
+    if (argc < 2)
+    {
+        std::cout << "\x1b[38;5;205mError: no argument\x1b[0m" << std::endl;
+        return (0);
+    }
+    PmergeMe P;
+    if (P.parseArgs(argc, argv) == false)
+        return (0);
+    P.displayRes();
+}
 
-
+/*
 int main() 
 {
     std::deque<int> arr;
@@ -77,3 +80,4 @@ int main()
 
     return 0;
 }
+*/
