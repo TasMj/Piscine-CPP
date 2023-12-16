@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Pmerge.hpp                                         :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:25:29 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/12 01:03:33 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/16 02:36:59 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 #include <sstream>
 #include <vector>
 #include <deque>
+#include <sys/time.h>
+
+/******************************************************************************/
+/*                                 Defines                                    */
+/******************************************************************************/
+#define EOC "\x1b[0m"
+#define PINK "\x1b[38;5;200m"
+#define PURPLE "\x1b[38;5;133m"
+#define GREEN "\x1b[38;5;79m"
 
 /******************************************************************************/
 /*                                   Classes                                  */
@@ -40,18 +49,18 @@ class PmergeMe
 		void	fillVec(std::vector<std::string> args);
 		void	fillDeq(std::vector<std::string> args);
 		void	addNbr(const std::string &s);
-		
 		void	addNbrDeq(const std::string &s);
 		
 		
-		void	printList(std::vector<int> cont);
+		// void	printList(std::vector<int> cont);
 		void	fordJohnsonSortDeq(std::deque<int> &arr);
+		void	fordJohnsonSortVec(std::vector<int> &arr);
 		void	printDeq();
 		void	displayRes();
+		
+		// void	printVec();
 
 
-		// void	fordJohnsonSortDeq(std::deque<int>& arr);
-		// void	fordJohnsonSortVec(std::vector<int>& arr);
 		// void	displayRes();
 		// void	printBefore();
 
@@ -60,12 +69,12 @@ class PmergeMe
 		// std::vector<int> args;
 		std::deque<int> dequeArr;
 		std::vector<int> vectArr;
-		timeval v_time;
+		timeval v_time_start;
 		timeval v_time_end;
-		timeval d_time;
+		timeval d_time_start;
 		timeval d_time_end;
-		double v_time_print;
-		double d_time_print;
+		double v_time;
+		double d_time;
 };
 
 /******************************************************************************/

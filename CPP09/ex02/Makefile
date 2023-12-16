@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+         #
+#    By: tas <tas@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 12:12:53 by tmejri            #+#    #+#              #
-#    Updated: 2023/12/11 19:03:43 by tmejri           ###   ########.fr        #
+#    Updated: 2023/12/16 02:29:29 by tas              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= Pmerge
+NAME 		= PmergeMe
 
 OBJ_PATH 	= obj/
 
-SRC_NAME 	= Pmerge.cpp main.cpp mergeSort.cpp \
+SRC_NAME 	= PmergeMe.cpp main.cpp \
 
 OBJ_NAME 	= $(SRC_NAME:.cpp=.o)
 

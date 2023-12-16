@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Pmerge.cpp                                         :+:      :+:    :+:   */
+/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:26:08 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/12 01:06:15 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/16 02:39:26 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Pmerge.hpp"
+#include "PmergeMe.hpp"
 
 /* canonical functions */
 PmergeMe::PmergeMe()
 {
-    std::cout << "\x1b[38;5;43mPmergeMe default constructor called\x1b[0m" << std::endl;
+    // std::cout << "\x1b[38;5;43mPmergeMe default constructor called\x1b[0m" << std::endl;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &copy)
 {
-    std::cout << "\x1b[38;5;114mPmergeMe Copy constructor called\x1b[0m" << std::endl;
+    // std::cout << "\x1b[38;5;114mPmergeMe Copy constructor called\x1b[0m" << std::endl;
 	if (this != &copy)
 		*this = copy;
 }
 	
 PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
 {
-    std::cout << "\x1b[38;5;138mPmergeMe Copy assignement operation called\x1b[0m" << std::endl;
+    // std::cout << "\x1b[38;5;138mPmergeMe Copy assignement operation called\x1b[0m" << std::endl;
 	(void)copy;
     return (*this);
 }
 
 PmergeMe::~PmergeMe()
 {
-    std::cout << "\x1b[38;5;124mPmergeMe destructor called\x1b[0m" << std::endl;
+    // std::cout << "\x1b[38;5;124mPmergeMe destructor called\x1b[0m" << std::endl;
 }
 
 /* tools */
@@ -138,31 +138,86 @@ void	PmergeMe::fordJohnsonSortDeq(std::deque<int> &arr)
     int n = arr.size();
     bool flag = true;
 
-    while (flag) {
+	struct timeval d_time_start, d_time_end;
+    gettimeofday(&d_time_start, NULL);
+
+    while (flag) 
+	{
         flag = false;
         int p = -1;
-        for (int i = 0; i < n - 1; ++i) {
+        for (int i = 0; i < n - 1; ++i)
+		{
             if (arr[i] > arr[i + 1]) {
                 p = i;
                 break;
             }
         }
 
-        if (p != -1) {
+        if (p != -1) 
+		{
             int q = p;
-            for (int i = p + 1; i < n; ++i) {
+            for (int i = p + 1; i < n; ++i)
+			{
                 if (arr[i] < arr[p]) {
                     q = i;
                 }
             }
-
             int temp = arr[q];
             arr.erase(arr.begin() + q);
             arr.insert(arr.begin() + p, temp);
             flag = true;
         }
     }
+
+	gettimeofday(&d_time_end, NULL);
+	long seconds = d_time_end.tv_sec - d_time_start.tv_sec;
+    long microseconds = d_time_end.tv_usec - d_time_start.tv_usec;
+    d_time = seconds + microseconds * 1e-6;
 }
+
+void	PmergeMe::fordJohnsonSortVec(std::vector<int> &arr)
+{
+    int n = arr.size();
+    bool flag = true;
+
+    struct timeval d_time_start, d_time_end;
+    gettimeofday(&d_time_start, NULL);
+
+    while (flag)
+    {
+        flag = false;
+        int p = -1;
+        for (int i = 0; i < n - 1; ++i)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                p = i;
+                break;
+            }
+        }
+
+        if (p != -1)
+        {
+            int q = p;
+            for (int i = p + 1; i < n; ++i)
+            {
+                if (arr[i] < arr[p])
+                {
+                    q = i;
+                }
+            }
+            std::swap(arr[p], arr[q]); // Échange les éléments aux indices p et q
+            flag = true;
+        }
+    }
+
+    gettimeofday(&d_time_end, NULL);
+    long seconds = d_time_end.tv_sec - d_time_start.tv_sec;
+    long microseconds = d_time_end.tv_usec - d_time_start.tv_usec;
+    d_time = seconds + microseconds * 1e-6;
+
+}
+
 
 void	PmergeMe::printDeq()
 {
@@ -177,27 +232,42 @@ void	PmergeMe::printDeq()
 	{
 		for (int i = 0; i < 4; i++)
 			std::cout << dequeArr[i] << " ";
-		std::cout << " [...]" << std::endl;
+		std::cout << "[...]" << std::endl;
 	}
 }
 
+// void	PmergeMe::printVec()
+// {
+// 	int	n = vectArr.size();
+	
+// 	if (n <= 4)
+// 	{
+// 		for (int i = 0; i < n; i++)
+// 			std::cout << vectArr[i] << " ";
+// 	}
+// 	else
+// 	{
+// 		for (int i = 0; i < 4; i++)
+// 			std::cout << vectArr[i] << " ";
+// 		std::cout << " [...]" << std::endl;
+// 	}
+// }
+
 void	PmergeMe::displayRes()
 {
-	std::cout << "Before: ";
+	std::cout << "Before: " << PURPLE;
 	printDeq();
 
-	std::cout << "After: ";
+	std::cout << EOC << "After: " << PURPLE;
 	fordJohnsonSortDeq(dequeArr);
 	printDeq();
+    std::cout << EOC;
 
-	std::cout << "Time to process a range of 5 elements with std::[..] : 0.00031 us" << std::endl;
+	std::cout << "Time to process a range of 5 elements with std::deque : " << GREEN <<  d_time << EOC << " us" << std::endl;
 	
+	fordJohnsonSortVec(vectArr);
+	std::cout << "Time to process a range of 5 elements with std::vector : " << GREEN << v_time << EOC << " us" << std::endl;
 
-/*
-- 3eme ligne: afficher texte indiquant tmps utilise par l'algo en précisant le premier conteneur utilisé pour trier la suite d'entiers positifs.
-- 4eme ligne: afficher un texte explicite indiquant le temps utilisé par votre algorithme en spécifiant le deuxième conteneur utilisé pour trier la séquence d'entiers positifs.
-votre algorithme en spécifiant le deuxième conteneur utilisé pour trier la suite d'entiers positifs.
-*/
 }
 
 
