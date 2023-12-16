@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 12:41:52 by tas               #+#    #+#             */
-/*   Updated: 2023/11/13 13:29:17 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/12 12:30:31 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main()
     Bureaucrat  b("Alvin", 50);
     Bureaucrat  c(b);
     
-    std::cout << "\x1b[38;5;221m********************GRADE THAT WORK********************\x1b[0m" << std::endl;
+    std::cout << "\x1b[38;5;221m********************GRADE THAT WORKS********************\x1b[0m" << std::endl;
     /*Default cosntructor*/
     try
     {
@@ -65,6 +65,7 @@ int main()
     {
         std::cerr << e.what() << '\n';
     }
+    
     try
     {
         b.setGrade(1);
@@ -88,6 +89,7 @@ int main()
     {
         std::cerr << e.what() << '\n';
     }
+    
     try
     {
         a.setGrade(150);

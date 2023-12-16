@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:30:33 by tas               #+#    #+#             */
-/*   Updated: 2023/11/13 19:03:37 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/12 12:59:10 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	{
 		Bureaucrat Alvin("Alvin", 130);
 		ShrubberyCreationForm shrubbery("F1");
-		std::cout << "Alvin's grade: sign:" << Alvin.getGrade() << std::endl;
+		std::cout << Alvin;
 		std::cout << "F1's grade: sign:" << shrubbery.getGradeSign() << ", exec: " << shrubbery.getGradeExec() << std::endl;
 		Alvin.signAForm(shrubbery);
 		Alvin.executeAForm(shrubbery);
@@ -40,8 +40,8 @@ int main()
 	{
 		Bureaucrat Theodor("Theodor", 150);
 		ShrubberyCreationForm shrubbery("F2");
-		std::cout << "Theodor's grade: sign:" << Theodor.getGrade() << std::endl;
-		std::cout << "F1's grade: sign:" << shrubbery.getGradeSign() << ", exec: " << shrubbery.getGradeExec() << std::endl;
+		std::cout << Theodor;
+		std::cout << "F2's grade: sign:" << shrubbery.getGradeSign() << ", exec: " << shrubbery.getGradeExec() << std::endl;
 		Theodor.signAForm(shrubbery);
 		Theodor.executeAForm(shrubbery);
 		shrubbery.to_execute(Theodor);
@@ -51,13 +51,13 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
     std::cout << "\n\x1b[38;5;221m******************TEST ROBOTOMY******************" << std::endl;
-	std::cout << "To creat a Shrubbery Form, it required grades: sign:72, exec:45\x1b[0m" << std::endl;
+	std::cout << "To creat a Robotomy Form, it required grades: sign:72, exec:45\x1b[0m" << std::endl;
     std::cout << "\x1b[38;5;221m--------------THAT WORKS--------------\x1b[0m" << std::endl;
 	try
 	{
 		Bureaucrat Alvin("Alvin", 10);
 		RobotomyRequestForm robot("R1");
-		std::cout << "Alvin's grade: sign: " << Alvin.getGrade() << std::endl;
+		std::cout << Alvin;
 		std::cout << "R1's grade: sign: " << robot.getGradeSign() << ", exec: " << robot.getGradeExec() << std::endl;
 		Alvin.signAForm(robot);
 		Alvin.executeAForm(robot);
@@ -72,7 +72,7 @@ int main()
 	{
 		Bureaucrat Theodor("Theodor", 100);
 		RobotomyRequestForm robot("R2");
-		std::cout << "Theodor's grade: sign: " << Theodor.getGrade() << std::endl;
+		std::cout << Theodor;
 		std::cout << "R2's grade: sign: " << robot.getGradeSign() << ", exec: " << robot.getGradeExec() << std::endl;
 		Theodor.signAForm(robot);
 		Theodor.executeAForm(robot);
@@ -83,13 +83,13 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << "\n\x1b[38;5;221m*****************TEST PRESIDENTIAL*****************" << std::endl;
-	std::cout << "To creat a Shrubbery Form, it required grades: sign:25, exec:5\x1b[0m" << std::endl;
+	std::cout << "To creat a Presidential Form, it required grades: sign:25, exec:5\x1b[0m" << std::endl;
     std::cout << "\x1b[38;5;221m--------------THAT WORKS--------------\x1b[0m" << std::endl;
     try
 	{
 		Bureaucrat Simon("Simon", 4);
 		PresidentialPardonForm president("P1");
-		std::cout << "Simon's grade: sign: " << Simon.getGrade() << std::endl;
+		std::cout << Simon;
 		std::cout << "P1's grade: sign: " << president.getGradeSign() << ", exec: " << president.getGradeExec() << std::endl;
 		Simon.signAForm(president);
 		Simon.executeAForm(president);
@@ -104,7 +104,7 @@ int main()
 	{
 		Bureaucrat Theodor("Theodor", 40);
 		PresidentialPardonForm president("P2");
-		std::cout << "Theodor's grade: sign: " << Theodor.getGrade() << std::endl;
+		std::cout << Theodor;
 		std::cout << "P2's grade: sign: " << president.getGradeSign() << ", exec: " << president.getGradeExec() << std::endl;
 		Theodor.signAForm(president);
 		Theodor.executeAForm(president);

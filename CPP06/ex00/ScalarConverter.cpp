@@ -6,11 +6,12 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:00:19 by tas               #+#    #+#             */
-/*   Updated: 2023/11/16 14:23:15 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/16 00:26:44 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <sstream>
 
 /* constructors and destructor */
 ScalarConverter::ScalarConverter()
@@ -52,33 +53,6 @@ int	ft_strcmp(std::string s1, std::string s2)
 	return (0);
 }
 
-long long	ft_atoi(std::string nptr)
-{
-	long long	res;
-	int			i;
-	int			sign;
-
-	i = 0;
-	res = 0;
-	sign = 1;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sign = -sign;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		if ((res > 2147483647 && sign == 1) || (res < -2147483648 - 1 && sign == -1))
-			return (-1);
-		res = (res * 10) + (nptr[i] - 48);
-		i++;
-	}
-	return (res * sign);
-}
-
 bool	onlyDigit(std::string nb)
 {
 	int i = 0;
@@ -118,18 +92,9 @@ bool	DecimalDigit(std::string nb)
 	return (true);
 }
 
-int	ftStrlen(std::string nb)
-{
-	int i = 0;
-
-	while (nb[i])
-		i++;
-	return (i);
-}
-
 bool	isFloat(std::string nb)
 {
-	int i = 0;
+	unsigned int i = 0;
 
 	if (nb[i] == '-')
 		i++;
@@ -145,168 +110,184 @@ bool	isFloat(std::string nb)
 		return (false);
 	while (nb[i] >= '0' && nb[i] <= '9')
 		i++;
-	if (nb[i] == 'f' && ftStrlen(nb) == (i + 1))
+	if (nb[i] == 'f' && nb.length() == (i + 1))
 		return (true);
 	return (false);
 }
 
 int	isAchar(std::string nb)
 {
-	if (ftStrlen(nb) > 1 && !onlyDigit(nb) && !isFloat(nb) && !DecimalDigit(nb))
+	if (nb.length() > 1 && !onlyDigit(nb) && !isFloat(nb) && !DecimalDigit(nb))
 		return (1);
-	if (ftStrlen(nb) == 1 && !onlyDigit(nb) && (nb[0] > 32 && nb[0] < 127))
+	if (nb.length() == 1 && !onlyDigit(nb) && ((nb[0] > 32 && nb[0] < 127) || nb[0] == 32))
 		return (2);
 	return (3);
 }
 
-void	removeF(std::string nb)
+/* convert functions */
+void	convertInt(std::string nb)
 {
-	int	i;
-	int	j;
-	
-	i = 0;
-	j = 0;
-	while (nb[i] != 'f')
-		i++;
-	while (j < i)
-	{
-		std::cout << nb[j];
-		j++;
-	}
-}
+	std::istringstream iss(nb);
+    long int longInt;
+	iss >> longInt;
+	int intValue = static_cast<int>(longInt);
 
-/* conversion */
-void    ScalarConverter::toChar(std::string nb)
-{
-	int		intValue;
-	char	asciiValue;
-
-	intValue = ft_atoi(nb);
-	if (ft_strcmp(nb, "-inff") || ft_strcmp(nb, "+inff") 
-		|| ft_strcmp(nb, "-inf") || ft_strcmp(nb, "+inf") 
-		|| ft_strcmp(nb, "nan") || isAchar(nb) == 1 
-		|| intValue <= -1 || intValue > 126)
+	if (longInt != intValue)
 	{
 		std::cout << "char: impossible" << std::endl;
-	}
-	else if (isAchar(nb) == 2)
-	{
-		std::cout << "char: " << nb << std::endl;
-	}
-	else if (ftStrlen(nb) == 1 && nb[0] == 32)
-		std::cout << "char: ' '" << std::endl;
-	else if ((intValue >= 0 && intValue < 32) || intValue == 127)
-	{
-		std::cout << "char: Non displayable" << std::endl;
-	}
-	else
-	{
-   		asciiValue = static_cast<char>(intValue);
-		if (asciiValue == 32)
-			std::cout << "char: ' '" << std::endl;
-		else
-			std::cout << "char: '" << asciiValue << "'" << std::endl;
-	}
-}
-
-void    ScalarConverter::toInt(std::string nb)
-{
-	int		intValue;
-
-	intValue = ft_atoi(nb);
-	if (ft_strcmp(nb, "-inff") || ft_strcmp(nb, "+inff") 
-		|| ft_strcmp(nb, "-inf") || ft_strcmp(nb, "+inf") 
-		|| ft_strcmp(nb, "nan") || intValue == -1)
-	{
 		std::cout << "int: impossible" << std::endl;
 	}
-	else if (ftStrlen(nb) == 1 && !onlyDigit(nb))
-	{
-		int asciiValue = static_cast<int>(nb[0]);
-		std::cout << "int: " << asciiValue << std::endl;
-	}
 	else
 	{
+		if ((intValue >= 0 && intValue < 32) || intValue == 127)
+			std::cout << "char: Non displayable" << std::endl;
+		else if (intValue < 0 || intValue > 127)
+			std::cout << "char: impossible" << std::endl;
+		else
+		{
+   			char	asciiValue = static_cast<char>(intValue);
+			if (asciiValue == 32)
+				std::cout << "char: ' '" << std::endl;
+			else
+				std::cout << "char: '" << asciiValue << "'" << std::endl;
+		}
 		std::cout << "int: " << intValue << std::endl;
 	}
+	std::cout << "float: " << static_cast<float>(longInt) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(longInt) << ".0" << std::endl;
 }
 
-void    ScalarConverter::toFloat(std::string nb)
+void	convertChar(std::string nb)
 {
-	if (ft_strcmp(nb, "-inff") || ft_strcmp(nb, "+inff") 
-		|| ft_strcmp(nb, "-inf") || ft_strcmp(nb, "+inf"))
+	char c = nb.at(0); //acces premier char
+	int	cInt = static_cast<int>(c);
+
+	std::cout << "char: '" << c << "'" << std::endl;
+	std::cout << "int: " << cInt << std::endl;
+	std::cout << "float: " << static_cast<float>(cInt) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(cInt) << ".0" << std::endl;
+}
+
+void	convertFloat(std::string nb)
+{
+    std::istringstream iss(nb);
+    float f;
+	iss >> f;
+	int fInt = static_cast<int>(f);
+	
+	if (f < -2147483648 || f > 2147483647)
 	{
-		std::cout << "float: impossible" << std::endl;
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+	}	
+	else
+	{
+		if ((fInt >= 0 && fInt < 32) || fInt == 127)
+			std::cout << "char: Non displayable" << std::endl;
+		else if (fInt < 0 || fInt > 127)
+			std::cout << "char: impossible" << std::endl;
+		else
+		{
+   			char asciiValue = static_cast<char>(fInt);
+			if (asciiValue == 32)
+				std::cout << "char: ' '" << std::endl;
+			else
+				std::cout << "char: '" << asciiValue << "'" << std::endl;
+		}
+		std::cout << "int: " << fInt << std::endl;
 	}
-	else if (ft_strcmp(nb, "nan"))
+	if (fInt == f)
 	{
-		std::cout << "float: nanf" << std::endl;
-	}
-	else if (isFloat(nb) == true)
-	{
-		std::cout << "float: " << nb << std::endl;
-	}
-	else if (onlyDigit(nb))
-	{
-		std::string floatValue = nb.append(".0f");
-		std::cout << "float: " << floatValue << std::endl;
-	}
-	else if (DecimalDigit(nb))
-	{
-		std::string floatValue = nb.append("f");
-		std::cout << "float: " << floatValue << std::endl;
+		std::cout << PINK << "float: " << f << ".0f" << EOC << std::endl;
+		std::cout << "double: " << f << ".0" << std::endl;
 	}
 	else
 	{
-		std::cout << "float: impossible" << std::endl;
-	}
+		std::cout << "float: " << f << "f" << std::endl;
+		std::cout << "double: " << f << std::endl;
+	} 
 }
 
-void    ScalarConverter::toDouble(std::string nb)
+void	convertDouble(std::string nb)
 {
-	if (ft_strcmp(nb, "-inff") || ft_strcmp(nb, "+inff") 
-		|| ft_strcmp(nb, "-inf") || ft_strcmp(nb, "+inf"))
-	{
-		std::cout << "double: impossible" << std::endl;
-	}
-	else if (ft_strcmp(nb, "nan"))
-	{
-		std::cout << "double: nan" << std::endl;
-	}
+    std::istringstream iss(nb);
+    double doubleValue;
+	iss >> doubleValue;
+	int intValue = static_cast<int>(doubleValue);
 
-	else if (DecimalDigit(nb))
+	if (doubleValue < -2147483648 || doubleValue > 2147483647)
 	{
-		std::cout << "double: " << nb << std::endl;
-	}
-	else if (onlyDigit(nb))
-	{
-		std::string floatValue = nb.append(".0");
-		std::cout << "double: " << floatValue << std::endl;
-	}
-	else if (isFloat(nb))
-	{
-		std::cout << "double: ";
-		removeF(nb);
-		std::cout << "\n";
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	}
 	else
 	{
-		std::cout << "double: impossible" << std::endl;
+		if ((intValue >= 0 && intValue < 32) || intValue == 127)
+			std::cout << "char: Non displayable" << std::endl;
+		else if (intValue < 0 || intValue > 127)
+			std::cout << "char: impossible" << std::endl;
+		else
+		{
+   			char	asciiValue = static_cast<char>(intValue);
+			if (asciiValue == 32)
+				std::cout << "char: ' '" << std::endl;
+			else
+				std::cout << "char: '" << asciiValue << "'" << std::endl;
+		}
+		std::cout << "int: " << intValue << std::endl;
 	}
+	if (intValue == doubleValue)
+	{
+		std::cout << "float: " << doubleValue << ".0f" << std::endl;
+		std::cout << "double: " << doubleValue << ".0" << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << doubleValue << "f" << std::endl;
+		std::cout << "double: " << doubleValue << std::endl;
+	}
+}
+
+void	convertNan()
+{
+	std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: Impossible" << std::endl;
+	std::cout << "float: nanf" << std::endl;
+	std::cout << "double: nan" << std::endl;
+}
+
+void	convertInfNeg()
+{
+	std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: Impossible" << std::endl;
+	std::cout << "float: -inff" << std::endl;
+	std::cout << "double: -inf" << std::endl;
+}
+
+void	convertInfPos()
+{
+	std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: Impossible" << std::endl;
+	std::cout << "float: inff" << std::endl;
+	std::cout << "double: inf" << std::endl;
 }
 
 void	ScalarConverter::convert(std::string nb)
 {
-	if (onlyDigit(nb) || DecimalDigit(nb) || isFloat(nb) || ft_strcmp(nb, "-inff") || ft_strcmp(nb, "+inff") 
-		|| ft_strcmp(nb, "-inf") || ft_strcmp(nb, "+inf") || ft_strcmp(nb, "nan") || ft_strcmp(nb, " "))
-	{
-		toChar(nb);
-		toInt(nb);
-		toFloat(nb);
-		toDouble(nb);
-	}
+		if (isAchar(nb) == 2)
+			convertChar(nb);
+		else if (onlyDigit(nb))
+			convertInt(nb);
+		else if (isFloat(nb))
+			convertFloat(nb);	
+		else if (DecimalDigit(nb))
+			convertDouble(nb);
+		else if (ft_strcmp(nb, "nan"))
+			convertNan();
+		else if (ft_strcmp(nb, "-inf") || ft_strcmp(nb, "-inff"))
+			convertInfNeg();
+		else if (ft_strcmp(nb, "inf") || ft_strcmp(nb, "inff") || ft_strcmp(nb, "+inf") || ft_strcmp(nb, "+inff"))
+			convertInfPos();
 	else
-	{
-		std::cout << "Not a valid argument" << std::endl;
-	}
+		std::cout << PINK << "Error: Not a valid argument" << EOC << std::endl;
 }

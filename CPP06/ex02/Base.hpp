@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:38:58 by tas               #+#    #+#             */
-/*   Updated: 2023/11/17 14:23:02 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/15 19:57:09 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ class C : public Base
     
 };
 
-Base * generate(void); //instancie aléatoirement A B ou C et renvoie l'instance sous la forme d'un pointeur Base
-void identify(Base* p); //Il affiche le type réel de l'objet pointé par p : "A", "B" ou "C".
-void identify(Base& p); //Il affiche le type réel de l'objet pointé par p : "A", "B" ou "C". L'utilisation d'un pointeur à l'intérieur de cette fonction est interdite.
+Base *generate(void); //instancie aléatoirement A B ou C et renvoie l'instance sous la forme d'un pointeur Base
+void identify(Base *p); //affiche le type réel de l'objet pointé par p : "A", "B" ou "C".
+void identify(Base &p); //same mais dereference le pointeur p --> au lieu du pointeur, la fonction identify() sera appelée avec l'objet réel de type Base
 
 #endif

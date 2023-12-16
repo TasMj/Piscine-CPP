@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:17:16 by tas               #+#    #+#             */
-/*   Updated: 2023/11/14 13:49:23 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/12 13:06:19 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ AForm *Intern::makeForm(std::string nameForm, std::string targetForm)
             NewForm = new ShrubberyCreationForm(targetForm);
             break;
         default:
-        std::cout << "The form " << nameForm << " doesn't exist.Choose:\n  *Presidential pardon\n  *Robotomy reqest\n  *Shrubbery creation" << std::endl;
+        std::cout << "The form \x1b[38;5;138m" << nameForm << "\x1b[0m doesn't exist. Choose:\n  *Presidential pardon\n  *Robotomy reqest\n  *Shrubbery creation" << std::endl;
         return (NULL);
     }
-    std::cout << "Intern creates " << nameForm << std::endl;
+    std::cout << "Intern creates \x1b[38;5;138m" << nameForm << "\x1b[0m" << std::endl;
     return (NewForm);
 }

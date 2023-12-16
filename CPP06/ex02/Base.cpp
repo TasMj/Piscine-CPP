@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:45:17 by tas               #+#    #+#             */
-/*   Updated: 2023/11/17 14:27:14 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/15 19:49:19 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ Base *generate(void)
 
 void identify(Base *p)
 {
-    if (dynamic_cast<A*>(p))
+    if (dynamic_cast<A*>(p)) //opérateur de conversion entre classes liées par héritage
         std::cout << "p est de type A" << std::endl;
     if (dynamic_cast<B*>(p))
         std::cout << "p est de type B" << std::endl;
     if (dynamic_cast<C*>(p))
         std::cout << "p est de type C" << std::endl;
-
 }
 
 void identify(Base &p)

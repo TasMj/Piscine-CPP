@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 18:45:14 by tas               #+#    #+#             */
-/*   Updated: 2023/11/13 19:01:28 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/12 12:42:46 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     std::cout << "\x1b[38;5;138mPresidential Copy assignement operation called\x1b[0m" << std::endl;
     (void)assign;
     return (*this);
-
 }
 
 /* destructor */

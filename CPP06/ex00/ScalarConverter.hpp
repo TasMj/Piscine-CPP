@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:00:09 by tas               #+#    #+#             */
-/*   Updated: 2023/11/16 09:33:12 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/15 19:36:29 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,28 @@
 #include <stdlib.h>
 
 /******************************************************************************/
+/*                                 Includes                                   */
+/******************************************************************************/
+#define PINK "\x1b[38;5;205m"
+#define EOC "\x1b[0m"
+
+/******************************************************************************/
 /*                                   Classes                                  */
 /******************************************************************************/
 
 class ScalarConverter
 {
-    public:
+    private:
 
         ScalarConverter();
         ScalarConverter(const ScalarConverter &copy);
         ScalarConverter &operator=(const ScalarConverter &assign);
         ~ScalarConverter();
 
-        void    convert(std::string nb);
-        
-        /* conversions */
-        void    toChar(std::string nb);
-        void    toInt(std::string nb);
-        void    toFloat(std::string nb);
-        void    toDouble(std::string nb);
-		
-	private:
+    public:
+    
+        static void    convert(std::string nb);
 		
 };
-
-long long	ft_atoi(std::string nptr);
-int	ft_strcmp(std::string s1, std::string s2);
 
 #endif

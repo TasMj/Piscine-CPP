@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 20:20:01 by tas               #+#    #+#             */
-/*   Updated: 2023/11/13 17:12:12 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/12 12:56:38 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	Bureaucrat::getGrade() const
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &c)
 {
-	out << c.getName() << "\x1b[38;5;198m, bureaucrat grade\x1b[0m" << c.getGrade() << std::endl;
+	out << c.getName() << ", bureaucrat grade: " << c.getGrade() << std::endl;
 	return (out);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:30:33 by tas               #+#    #+#             */
-/*   Updated: 2023/11/14 13:50:25 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/12 13:04:55 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ int main()
 		AForm	*f;
 		AForm	*g;
 		AForm	*h;
-		(void)f;
-		(void)g;
-		(void)h;
 		
 		f = jade.makeForm("Presidential pardon", "a");
 		g = jade.makeForm("Robotomy request", "b");
@@ -51,8 +48,6 @@ int main()
 		Bureaucrat	rio("rio", 4);
 		AForm	*i;
 		AForm	*j;
-		(void)i;
-		(void)j;
 		
 		i = kyle.makeForm("random form", "d");
 		j = kyle.makeForm("Prsidential pardon", "e");

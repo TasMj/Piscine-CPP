@@ -35,14 +35,13 @@ Serializer::~Serializer()
     std::cout << "\x1b[38;5;124mSerializer destructor called\x1b[0m" << std::endl;	
 }
 
-/* convert a pointer to an unsigned int sans effectuer de conversion réelles de données
---> Permet d'obtenir une représentation numérique du pointeur */
+/* prend un pointeur et le convertit en un entier non signé de type uintptr_t */
 uintptr_t Serializer::serialize(Data* ptr)
 {
-    return (reinterpret_cast<uintptr_t>(ptr));
+    return (reinterpret_cast<uintptr_t>(ptr)); //reinterpret_cast = operateur de conversion
 }
 
-/* convert from an unsigned int to a pointer */
+/* prend un paramètre entier non signé et le convertit en un pointeur sur Data.*/
 Data*   Serializer::deserialize(uintptr_t raw)
 {
     return (reinterpret_cast<Data*>(raw));

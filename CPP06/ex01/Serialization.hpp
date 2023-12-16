@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Serialization.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:57:49 by tas               #+#    #+#             */
-/*   Updated: 2023/11/16 16:19:58 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/15 19:26:17 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 typedef struct s_Data
 {
     std::string str;
-    uintptr_t   n;
+    uintptr_t   n; // uintptr_t = unsigned int type capable of storing a data pointer
 }               Data;
 
 
@@ -39,15 +39,15 @@ typedef struct s_Data
 
 class Serializer
 {
-    public:
-
+    private:
         Serializer();
         Serializer(const Serializer &copy);
         Serializer &operator=(const Serializer &assign);
         ~Serializer();
 
-        static uintptr_t serialize(Data* ptr);
-        static Data* deserialize(uintptr_t raw);
+    public:
+        static uintptr_t serialize(Data *ptr);
+        static Data *deserialize(uintptr_t raw);
 };
 
 #endif
