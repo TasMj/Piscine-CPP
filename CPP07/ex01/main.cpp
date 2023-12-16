@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:08 by tas               #+#    #+#             */
-/*   Updated: 2023/11/17 18:58:30 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/16 01:31:28 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void    printTab(T *array, int len)
     }
 }
 
-std::string	addMonth(std::string s)
+template<typename F>
+F	addMonth(F s)
 {
 	s.append(" Novembre 2023");
 	return s;
@@ -65,7 +66,7 @@ int main()
 
     printf("\x1b[38;5;36m----avant fonction add month----\x1b[0m\n");
     printTab(tabString, 3);
-    iter(tabString, 3, addMonth);
+    iter(tabString, 3, addMonth<std::string>);
     printf("\x1b[38;5;205m----après fonction add month----\x1b[0m\n"); 
     printTab(tabString, 3);
 

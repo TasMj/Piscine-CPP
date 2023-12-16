@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:01:08 by tas               #+#    #+#             */
-/*   Updated: 2023/11/21 14:19:22 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/16 01:45:41 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ T &Array<T>::operator[](size_t index) const
         throw Array::InvalidIndex();
     return (this->_elmTab[index]);
 }
-
 
 template<typename T>
 Array<T>::~Array()

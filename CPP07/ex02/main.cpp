@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:01:58 by tas               #+#    #+#             */
-/*   Updated: 2023/11/21 16:14:43 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/16 01:40:43 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int main(int, char**)
 {
 	printf("\x1b[38;5;143m**************EMPTY ARRAY**************\x1b[0m\n");
-	Array<int>			EmptyArray;
+	Array<int>	EmptyArray;
 	std::cout << "size: " << EmptyArray.size() << std::endl;
 	
 	printf("\n\x1b[38;5;143m***************INT ARRAY***************\x1b[0m\n");
