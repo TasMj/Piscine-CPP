@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:00:19 by tas               #+#    #+#             */
-/*   Updated: 2023/12/16 00:26:44 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/17 23:42:37 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,15 +196,15 @@ void	convertFloat(std::string nb)
 		}
 		std::cout << "int: " << fInt << std::endl;
 	}
-	if (fInt == f)
+	if ((fInt - f) == 0)
 	{
-		std::cout << PINK << "float: " << f << ".0f" << EOC << std::endl;
+		std::cout << "float: " << f << ".0f" << std::endl;
 		std::cout << "double: " << f << ".0" << std::endl;
 	}
 	else
 	{
-		std::cout << "float: " << f << "f" << std::endl;
-		std::cout << "double: " << f << std::endl;
+		std::cout << "float: " << nb << std::endl;
+		std::cout << "double: " << nb << std::endl;
 	} 
 }
 
@@ -236,15 +236,15 @@ void	convertDouble(std::string nb)
 		}
 		std::cout << "int: " << intValue << std::endl;
 	}
-	if (intValue == doubleValue)
+	if (intValue - doubleValue == 0)
 	{
 		std::cout << "float: " << doubleValue << ".0f" << std::endl;
 		std::cout << "double: " << doubleValue << ".0" << std::endl;
 	}
 	else
 	{
-		std::cout << "float: " << doubleValue << "f" << std::endl;
-		std::cout << "double: " << doubleValue << std::endl;
+		std::cout << "float: " << nb << "f" << std::endl;
+		std::cout << "double: " << nb << std::endl;
 	}
 }
 
