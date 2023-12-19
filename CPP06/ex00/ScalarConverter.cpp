@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:00:19 by tas               #+#    #+#             */
-/*   Updated: 2023/12/17 23:42:37 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/19 21:44:44 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,23 @@ bool	isFloat(std::string nb)
 	return (false);
 }
 
+int	precisionCounter(std::string nb)
+{
+	int i = 0;
+	int c = 0;
+
+	while (isdigit(nb[i]))
+		i++;
+	if (nb[i] == '.')
+		i++;
+	while (isdigit(nb[i]))
+	{
+		c++;
+		i++;
+	}
+	return (c);
+}
+
 int	isAchar(std::string nb)
 {
 	if (nb.length() > 1 && !onlyDigit(nb) && !isFloat(nb) && !DecimalDigit(nb))
@@ -153,8 +170,8 @@ void	convertInt(std::string nb)
 		}
 		std::cout << "int: " << intValue << std::endl;
 	}
-	std::cout << "float: " << static_cast<float>(longInt) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(longInt) << ".0" << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(longInt) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(longInt) << std::endl;
 }
 
 void	convertChar(std::string nb)
@@ -164,8 +181,8 @@ void	convertChar(std::string nb)
 
 	std::cout << "char: '" << c << "'" << std::endl;
 	std::cout << "int: " << cInt << std::endl;
-	std::cout << "float: " << static_cast<float>(cInt) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(cInt) << ".0" << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(cInt) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(cInt) << std::endl;
 }
 
 void	convertFloat(std::string nb)
@@ -174,8 +191,8 @@ void	convertFloat(std::string nb)
     float f;
 	iss >> f;
 	int fInt = static_cast<int>(f);
-	
-	if (f < -2147483648 || f > 2147483647)
+
+	if (fInt < -2147483648 || fInt > 2147483647 || (fInt < 0 && nb.length() >= 11))
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
@@ -196,16 +213,8 @@ void	convertFloat(std::string nb)
 		}
 		std::cout << "int: " << fInt << std::endl;
 	}
-	if ((fInt - f) == 0)
-	{
-		std::cout << "float: " << f << ".0f" << std::endl;
-		std::cout << "double: " << f << ".0" << std::endl;
-	}
-	else
-	{
-		std::cout << "float: " << nb << std::endl;
-		std::cout << "double: " << nb << std::endl;
-	} 
+	std::cout << "float: " << std::fixed << std::setprecision(precisionCounter(nb)) << f << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(precisionCounter(nb)) << static_cast<double>(f) << std::endl;
 }
 
 void	convertDouble(std::string nb)
@@ -236,58 +245,52 @@ void	convertDouble(std::string nb)
 		}
 		std::cout << "int: " << intValue << std::endl;
 	}
-	if (intValue - doubleValue == 0)
-	{
-		std::cout << "float: " << doubleValue << ".0f" << std::endl;
-		std::cout << "double: " << doubleValue << ".0" << std::endl;
-	}
-	else
-	{
-		std::cout << "float: " << nb << "f" << std::endl;
-		std::cout << "double: " << nb << std::endl;
-	}
+	std::cout << "float: " << std::fixed << std::setprecision(precisionCounter(nb)) << static_cast<float>(doubleValue) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(precisionCounter(nb)) << doubleValue << std::endl;
 }
 
 void	convertNan()
 {
-	std::cout << "char: Impossible" << std::endl;
-	std::cout << "int: Impossible" << std::endl;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
 	std::cout << "float: nanf" << std::endl;
 	std::cout << "double: nan" << std::endl;
 }
 
 void	convertInfNeg()
 {
-	std::cout << "char: Impossible" << std::endl;
-	std::cout << "int: Impossible" << std::endl;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
 	std::cout << "float: -inff" << std::endl;
 	std::cout << "double: -inf" << std::endl;
 }
 
 void	convertInfPos()
 {
-	std::cout << "char: Impossible" << std::endl;
-	std::cout << "int: Impossible" << std::endl;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
 	std::cout << "float: inff" << std::endl;
 	std::cout << "double: inf" << std::endl;
 }
 
 void	ScalarConverter::convert(std::string nb)
 {
-		if (isAchar(nb) == 2)
-			convertChar(nb);
-		else if (onlyDigit(nb))
-			convertInt(nb);
-		else if (isFloat(nb))
-			convertFloat(nb);	
-		else if (DecimalDigit(nb))
-			convertDouble(nb);
-		else if (ft_strcmp(nb, "nan"))
-			convertNan();
-		else if (ft_strcmp(nb, "-inf") || ft_strcmp(nb, "-inff"))
-			convertInfNeg();
-		else if (ft_strcmp(nb, "inf") || ft_strcmp(nb, "inff") || ft_strcmp(nb, "+inf") || ft_strcmp(nb, "+inff"))
-			convertInfPos();
+	if (nb.empty())
+		std::cout << PINK << "Error: No argument" << EOC << std::endl;
+	else if (isAchar(nb) == 2)
+		convertChar(nb);
+	else if (onlyDigit(nb))
+		convertInt(nb);
+	else if (isFloat(nb))
+		convertFloat(nb);	
+	else if (DecimalDigit(nb))
+		convertDouble(nb);
+	else if (ft_strcmp(nb, "nan"))
+		convertNan();
+	else if (ft_strcmp(nb, "-inf") || ft_strcmp(nb, "-inff"))
+		convertInfNeg();
+	else if (ft_strcmp(nb, "inf") || ft_strcmp(nb, "inff") || ft_strcmp(nb, "+inf") || ft_strcmp(nb, "+inff"))
+		convertInfPos();
 	else
 		std::cout << PINK << "Error: Not a valid argument" << EOC << std::endl;
 }
