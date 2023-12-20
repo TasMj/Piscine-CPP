@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:59:50 by tas               #+#    #+#             */
-/*   Updated: 2023/11/17 18:46:51 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/20 11:28:30 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    iter(T *array, int lenghtArray, F function)
 
     while (i < lenghtArray)
     {
-        array[i] = function(array[i]);
+        function(array[i]);
         i++;
     }
 }

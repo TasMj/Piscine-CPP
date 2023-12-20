@@ -6,7 +6,7 @@
 /*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:45:17 by tas               #+#    #+#             */
-/*   Updated: 2023/12/15 19:49:19 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/20 10:29:35 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,12 @@ void identify(Base *p)
 
 void identify(Base &p)
 {
-    identify(&p);
+    try
+    {
+        identify(&p);
+    }
+    catch(const std::exception& e)
+    {
+        throw NotaValidClass::exception();
+    }
 }

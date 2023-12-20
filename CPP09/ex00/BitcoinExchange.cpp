@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:22:46 by tas               #+#    #+#             */
-/*   Updated: 2023/11/23 22:50:58 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/20 09:39:26 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,11 @@ bool BitcoinExchange::parseFile(std::string file)
     std::ifstream inputFile(file.c_str());
 	getData();
 	
+	if (file.empty())
+	{
+        std::cout << "\x1b[38;5;205mError: No argument\x1b[0m" << std::endl;
+        return (false);
+	}
     if (!inputFile.is_open())
 	{
         std::cout << "\x1b[38;5;205mError: can't open file\x1b[0m" << std::endl;

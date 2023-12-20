@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:55:08 by tas               #+#    #+#             */
-/*   Updated: 2023/11/24 17:15:38 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/20 09:43:16 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	if (argc == 1)
 		std::cout << "\x1b[38;5;205mError: no argument\x1b[0m" << std::endl;
-	if (argc > 2)
+	else if (argc > 2)
 		std::cout << "\x1b[38;5;205mError: too many arguments\x1b[0m" << std::endl;
 	else
     {
