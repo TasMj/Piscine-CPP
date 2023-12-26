@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:35:35 by tas               #+#    #+#             */
-/*   Updated: 2023/11/21 19:02:18 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/25 11:43:30 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@
 /******************************************************************************/
 
 class NoOccurence : public std::exception
-	{
-		public:
-			const char	*what(void) const throw()
-			{
-				return "\x1b[38;5;125mAucune occurence n'a été trouvée.\x1b[0m";
-			}
-	};
+{
+	public:
+		const char	*what(void) const throw()
+		{
+			return "\x1b[38;5;125mAucune occurence n'a été trouvée.\x1b[0m";
+		}
+};
 
 /******************************************************************************/
 /*                                 Functions                                  */

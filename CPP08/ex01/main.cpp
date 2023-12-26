@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:58:14 by tas               #+#    #+#             */
-/*   Updated: 2023/11/22 12:15:59 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 00:46:00 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main()
     
     Span sp2 = Span(10000);
     
-    for (unsigned int i = 0; i < 10000; i++)
+    for (int i = 0; i < 10000; i++)
     {
         sp2.addNumber(i);
     }
@@ -58,8 +58,8 @@ int main()
     std::cout << "--------------------------------------------\x1b[0m" << std::endl;
 
     Span sp3 = Span(10000);
-    std::vector<unsigned int> v3;
-    srand(static_cast<unsigned int>(time(0)));
+    std::vector<int> v3;
+    srand(static_cast<int>(time(0)));
     
     for (unsigned int i = 0; i < 10000; i++)
     {
@@ -114,7 +114,6 @@ int main()
     Span sp6(3);
     try
     {
-        sp6.addNumber(765);
         std::cout << sp6.longestSpan() << std::endl;
     }
     catch(const std::exception& e)

@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:02:35 by tas               #+#    #+#             */
-/*   Updated: 2023/11/22 14:17:07 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 00:52:00 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ class Span
         
         /* function member */
         void    addNumber(int nb);
-        int     shortestSpan();
-        int     longestSpan();
+        unsigned int     shortestSpan();
+        unsigned int     longestSpan();
 
         void	printTab();
         int     getSize();
-        void    RangeOfIterators(std::vector<unsigned int>::iterator begin, std::vector<unsigned int>::iterator end);
+        void    RangeOfIterators(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         
         /* exceptions */
         class TooMuchElemException : public std::exception
@@ -70,7 +70,7 @@ class Span
         
     private:
         unsigned int                 _size;
-        std::vector<unsigned int>    _tab;
+        std::vector<int>    _tab;
 };
 
 int	randomInRange(int min, int max);

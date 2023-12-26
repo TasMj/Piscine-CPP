@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:21:03 by tas               #+#    #+#             */
-/*   Updated: 2023/11/22 14:02:50 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 00:52:27 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <string>
 #include <stack>
 #include <list>
+#include <cstdio>
 
 /******************************************************************************/
 /*                                  Class                                     */
@@ -43,14 +44,9 @@ class MutantStack : public std::stack<T>
         typedef typename std::stack<T>::container_type::iterator iterator;
         iterator    begin();
         iterator    end();
-
-
-    private:
-        std::stack<T>   _stack;
 };
 
 /* constructors & desctructor */
-
 template<typename T>
 MutantStack<T>::MutantStack()
 {

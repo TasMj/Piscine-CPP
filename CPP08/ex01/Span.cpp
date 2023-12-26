@@ -6,14 +6,14 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:11:14 by tas               #+#    #+#             */
-/*   Updated: 2023/11/22 12:17:51 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 00:41:49 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 /* constructors & destructor */
-Span::Span() : _size(10000)
+Span::Span() : _size(0)
 {
 	std::cout << "\x1b[38;5;43mSpan default constructor called\x1b[0m" << std::endl;
 }
@@ -53,36 +53,35 @@ void	Span::addNumber(int nb)
 		_tab.push_back(nb);
 }
 
-int	Span::longestSpan()
+unsigned int	Span::longestSpan()
 {
 	if (_tab.size() <= 1)
 		throw Span::EmptySpanException();
-	std::vector<unsigned int> copyTab;
+	std::vector<int> copyTab;
 	copyTab = _tab;
 	std::sort(copyTab.begin(), copyTab.end());
-	return (copyTab.back() - copyTab.front());
+	return (abs(copyTab.back() - copyTab.front()));
 }
 
-int	Span::shortestSpan()
+unsigned int	Span::shortestSpan()
 {
 	if (_tab.size() <= 1)
 		throw Span::EmptySpanException();
 
-	std::vector<unsigned int> copyTab;
+	std::vector<int> copyTab;
 	copyTab = _tab;
 	std::sort(copyTab.begin(), copyTab.end());
 
-	std::vector<unsigned int> distElm;
+	std::vector<int> distElm;
 	for (unsigned int i = 0; i < copyTab.size() - 1; i++)
 	{
 		distElm.push_back(copyTab[i + 1] - copyTab[i]);
 	}
 	int min;
-	for (unsigned int i = 0; i < distElm.size(); i++)
+	for (unsigned int i = 0; i < distElm.size() - 1; i++)
 	{
 		if (distElm[i] <= distElm[i + 1])
 			min = distElm[i];
-		i++;
 	}
 	return (min);
 }
@@ -105,7 +104,7 @@ int	randomInRange(int min, int max)
     return min + (rand() % (max - min + 1));
 }
 
-void Span::RangeOfIterators(std::vector<unsigned int>::iterator	begin, std::vector<unsigned int>::iterator end)
+void Span::RangeOfIterators(std::vector<int>::iterator	begin, std::vector<int>::iterator end)
 {
 	if ((end - begin) + _tab.size() > _size)
 		throw Span::TooMuchElemException();

@@ -6,7 +6,7 @@
 #    By: tas <tas@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:08:50 by tas               #+#    #+#              #
-#    Updated: 2023/11/22 16:50:54 by tas              ###   ########.fr        #
+#    Updated: 2023/12/25 22:19:02 by tas              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 		= ex02
 
 OBJ_PATH 	= obj/
 
-SRC_NAME 	=  text.cpp \
+SRC_NAME 	=  main.cpp \
 
 OBJ_NAME 	= $(SRC_NAME:.cpp=.o)
 
