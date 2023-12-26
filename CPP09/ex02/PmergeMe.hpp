@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:25:29 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/16 02:36:59 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 16:26:34 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,12 @@ class PmergeMe
 		void	fillDeq(std::vector<std::string> args);
 		void	addNbr(const std::string &s);
 		void	addNbrDeq(const std::string &s);
-		
-		
-		// void	printList(std::vector<int> cont);
 		void	fordJohnsonSortDeq(std::deque<int> &arr);
 		void	fordJohnsonSortVec(std::vector<int> &arr);
 		void	printDeq();
 		void	displayRes();
 		
-		// void	printVec();
-
-
-		// void	displayRes();
-		// void	printBefore();
-
     private:
-		// int	sizeArg;
-		// std::vector<int> args;
 		std::deque<int> dequeArr;
 		std::vector<int> vectArr;
 		timeval v_time_start;

@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:26:08 by tmejri            #+#    #+#             */
-/*   Updated: 2023/12/16 02:39:26 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 16:30:40 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,24 @@
 /* canonical functions */
 PmergeMe::PmergeMe()
 {
-    // std::cout << "\x1b[38;5;43mPmergeMe default constructor called\x1b[0m" << std::endl;
+
 }
 
 PmergeMe::PmergeMe(const PmergeMe &copy)
 {
-    // std::cout << "\x1b[38;5;114mPmergeMe Copy constructor called\x1b[0m" << std::endl;
 	if (this != &copy)
 		*this = copy;
 }
 	
 PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
 {
-    // std::cout << "\x1b[38;5;138mPmergeMe Copy assignement operation called\x1b[0m" << std::endl;
 	(void)copy;
     return (*this);
 }
 
 PmergeMe::~PmergeMe()
 {
-    // std::cout << "\x1b[38;5;124mPmergeMe destructor called\x1b[0m" << std::endl;
+
 }
 
 /* tools */
@@ -107,7 +105,7 @@ bool	PmergeMe::parseArgs(int argc, char **argv)
 	{
 		if (is_number(*it) == false)
 		{
-        	std::cout << "\x1b[38;5;205mError: \x1b[0m" << *it << "\x1b[38;5;205m is not a digit\x1b[0m" << std::endl;
+        	std::cout << "\x1b[38;5;205mError: \x1b[0m" << *it << "\x1b[38;5;205m is not an acceptable number\x1b[0m" << std::endl;
 			return (false);
 		}
 	}
@@ -121,17 +119,6 @@ bool	PmergeMe::parseArgs(int argc, char **argv)
 	fillDeq(args);
 	return (true);
 }
-
-// void	PmergeMe::printList(std::vector<int> list)
-// {
-// 	std::vector<int>::iterator it;
-	
-// 	for (it = list.begin(); it < list.end(); it++)
-// 	{
-// 		std::cout << *it << " ";
-// 	}
-// 	std::cout << std::endl;
-// }
 
 void	PmergeMe::fordJohnsonSortDeq(std::deque<int> &arr)
 {
@@ -180,8 +167,8 @@ void	PmergeMe::fordJohnsonSortVec(std::vector<int> &arr)
     int n = arr.size();
     bool flag = true;
 
-    struct timeval d_time_start, d_time_end;
-    gettimeofday(&d_time_start, NULL);
+    struct timeval v_time_start, v_time_end;
+    gettimeofday(&v_time_start, NULL);
 
     while (flag)
     {
@@ -211,13 +198,11 @@ void	PmergeMe::fordJohnsonSortVec(std::vector<int> &arr)
         }
     }
 
-    gettimeofday(&d_time_end, NULL);
-    long seconds = d_time_end.tv_sec - d_time_start.tv_sec;
-    long microseconds = d_time_end.tv_usec - d_time_start.tv_usec;
-    d_time = seconds + microseconds * 1e-6;
-
+    gettimeofday(&v_time_end, NULL);
+    long seconds = v_time_end.tv_sec - v_time_start.tv_sec;
+    long microseconds = v_time_end.tv_usec - v_time_start.tv_usec;
+    v_time = seconds + microseconds * 1e-6;
 }
-
 
 void	PmergeMe::printDeq()
 {
@@ -236,23 +221,6 @@ void	PmergeMe::printDeq()
 	}
 }
 
-// void	PmergeMe::printVec()
-// {
-// 	int	n = vectArr.size();
-	
-// 	if (n <= 4)
-// 	{
-// 		for (int i = 0; i < n; i++)
-// 			std::cout << vectArr[i] << " ";
-// 	}
-// 	else
-// 	{
-// 		for (int i = 0; i < 4; i++)
-// 			std::cout << vectArr[i] << " ";
-// 		std::cout << " [...]" << std::endl;
-// 	}
-// }
-
 void	PmergeMe::displayRes()
 {
 	std::cout << "Before: " << PURPLE;
@@ -267,19 +235,4 @@ void	PmergeMe::displayRes()
 	
 	fordJohnsonSortVec(vectArr);
 	std::cout << "Time to process a range of 5 elements with std::vector : " << GREEN << v_time << EOC << " us" << std::endl;
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

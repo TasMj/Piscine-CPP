@@ -6,13 +6,11 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:54:50 by tas               #+#    #+#             */
-/*   Updated: 2023/12/26 14:55:43 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 15:54:45 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <sstream>
-#include <stdlib.h>
 
 /* constructors & destructor */
 RPN::RPN()
@@ -63,7 +61,7 @@ int	onlyNumAndOperand(std::string str)
 	{
 		if ((!isNumeric(str[i]) && !isOperand(str[i]) && str[i] != ' '))
 		{
-			std::cout << "\x1b[38;5;205mError: can only contain numerics and operand seperated by a space\x1b[0m" << std::endl;
+			std::cout << "\x1b[38;5;205mError: can only contain numerics and operand seperated by space\x1b[0m" << std::endl;
 			return (0);
 		}
 		i++;
@@ -92,89 +90,34 @@ int parseArgv(std::string str)
 			i++;
 		else
 		{
-			std::cout << "Error: Invalid expression format" << std::endl;
+			std::cout << "\x1b[38;5;205mError: Invalid expression format\x1b[0m" << std::endl;
 			return (1);	
 		}
 	}
 	return (0);
 }
 
-int countNbr(std::string operation)
-{
-	int i = 0;
-	int counter = 0;
-	
-	while (operation[i])
-	{
-		if (isNumeric(operation[i]))
-			counter++;
-		i++;
-	}
-	return (counter);
-}
-
-int countOperand(std::string operation)
-{
-	int i = 0;
-	int counter = 0;
-	
-	while (operation[i])
-	{
-		if (isOperand(operation[i]))
-			counter++;
-		i++;
-	}
-	return (counter);
-}
-
-int	operationStack(int a, int b, char o)
-{
-	if (o == '+')
-		return (a + b);
-	if (o == '-')
-		return (a - b);
-	if (o == '*')
-		return (a * b);
-	if (o == '/')
-		return (a / b);
-	return (0);
-}
-
-/* function memnber */
-void	RPN::fillStack(std::string str)
-{
-	int i = 0;
-	
-	while (str[i])
-	{
-		if (isNumeric(str[i]) || isOperand(str[i]))
-			stackNbr.push(str[i]);
-		i++;
-	}
-}
-
-void	RPN::fillSaveStack()
-{
-	while (stackNbr.size()!= 0)
-	{
-		saveStack.push(stackNbr.top());
-		stackNbr.pop();
-	}
-		
-}
-
+/* function member */
 void RPN::doCalcul(std::string str)
 {
     std::istringstream ss(str);
     std::string token;
-    std::stack<int> numbers;
 
     while (ss >> token) 
 	{
-		std::cout << token << std::endl;
         if (isNumeric(token[0]) || (token.size() > 1 && isOperand(token[0]) && isNumeric(token[1])))
 		{
-            int number = atoi(token.c_str());
+            long int number = atoi(token.c_str());
+			if ((token.size() > 11) || (number > 0 && token[0] == '-') || (number < -2147483648 && token.size() >= 11))
+			{
+	            std::cout << "\x1b[38;5;205mError: Overflow\x1b[0m" << std::endl;
+					return;
+			}
+			if (number >= 10)
+			{
+                std::cout << "\x1b[38;5;205mError: The numbers used in this operation and passed as arguments has to be less than 10.\x1b[0m" << std::endl;
+				return;
+			}
             numbers.push(number);
         }
 		else if (isOperand(token[0])) 
@@ -188,10 +131,14 @@ void RPN::doCalcul(std::string str)
             int b = numbers.top(); numbers.pop();
             int a = numbers.top(); numbers.pop();
 
-            switch (token[0]) {
-                case '+': numbers.push(a + b); break;
-                case '-': numbers.push(a - b); break;
-                case '*': numbers.push(a * b); break;
+            switch (token[0])
+			{
+                case '+': numbers.push(a + b);
+					break;
+                case '-': numbers.push(a - b);
+					break;
+                case '*': numbers.push(a * b);
+					break;
                 case '/':
                     if (b == 0) {
                         std::cout << "\x1b[38;5;205mError: Division by zero\x1b[0m" << std::endl;

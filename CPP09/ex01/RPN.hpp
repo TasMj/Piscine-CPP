@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:53:46 by tas               #+#    #+#             */
-/*   Updated: 2023/11/24 16:24:25 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 15:15:38 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #include <iostream>
 #include <string>
 #include <stack>
-
+#include <sstream>
+#include <stdlib.h>
 
 /******************************************************************************/
 /*                                   Classes                                  */
@@ -39,15 +40,11 @@ class RPN
 		
 		/* function member */
 		void	doCalcul(std::string str);
-		void	fillStack(std::string str);
-		void	fillSaveStack();
 
 	private:
-		std::stack<int> stackNbr;
-		std::stack<int> saveStack;
+		std::stack<int> numbers;
 };
 
 int parseArgv(std::string str);
-int countNbr(std::string operation);
 
 #endif
