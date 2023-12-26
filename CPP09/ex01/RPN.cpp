@@ -6,11 +6,13 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:54:50 by tas               #+#    #+#             */
-/*   Updated: 2023/11/24 17:35:18 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 14:55:43 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+#include <sstream>
+#include <stdlib.h>
 
 /* constructors & destructor */
 RPN::RPN()
@@ -80,29 +82,19 @@ int parseArgv(std::string str)
 	}
 	if (!onlyNumAndOperand(str))
 		return (1);
-	if (!isNumeric(str[0]))
-	{
-		std::cout << "\x1b[38;5;205mError: the first character has to be a number\x1b[0m" << std::endl;
-		return (1);
-	}
 	while (str[i])
 	{
-		if (i % 2 == 0 && (!isNumeric(str[i]) && !isOperand(str[i])))
+		if (str[i] == ' ')
+			i++;
+		else if (isOperand(str[i]) && (!str[i + 1] || str[i + 1] == ' ' || isNumeric(str[i + 1])))
+			i++;
+		else if (isNumeric(str[i]) && (str[i + 1] && (str[i + 1] == ' ' || isNumeric(str[i + 1]))))
+			i++;
+		else
 		{
-			std::cout << "\x1b[38;5;205mError: must contain only numeric and operand characters\x1b[0m" << std::endl;
-			return (1);
+			std::cout << "Error: Invalid expression format" << std::endl;
+			return (1);	
 		}
-		else if (i % 2 == 1 && str[i] != ' ')
-		{
-			std::cout << "\x1b[38;5;205mError: numbers and operands must be seperated by a space\x1b[0m" << std::endl;
-			return (1);
-		}
-		i++;
-	}
-	if ((isNumeric(str[i - 1]) || str[i - 1] == ' ') && countNbr(str) != 1)
-	{
-		std::cout << "\x1b[38;5;205mError: input must end by an operand\x1b[0m" << std::endl;
-		return (1);
 	}
 	return (0);
 }
@@ -171,37 +163,52 @@ void	RPN::fillSaveStack()
 		
 }
 
-void	RPN::doCalcul(std::string str)
+void RPN::doCalcul(std::string str)
 {
-	
-	if (countNbr(str) == 1)
-		std::cout << str << std::endl;
-	else if (countNbr(str) == 2 && countOperand(str) == 0)
-		std::cout << "\x1b[38;5;205mError: there is no operand\x1b[0m" << std::endl;
-	else
-	{
-		fillStack(str);
-		fillSaveStack();
-		/* first calcul */
-		int		nb1 = saveStack.top() - '0';
-		saveStack.pop();
-		int		nb2 = saveStack.top() - '0';
-		saveStack.pop();
-		char	operand = saveStack.top();
-		saveStack.pop();
-		saveStack.push(operationStack(nb1, nb2, operand));
+    std::istringstream ss(str);
+    std::string token;
+    std::stack<int> numbers;
 
-		/* the rest */
-		while (saveStack.size() != 1)
+    while (ss >> token) 
+	{
+		std::cout << token << std::endl;
+        if (isNumeric(token[0]) || (token.size() > 1 && isOperand(token[0]) && isNumeric(token[1])))
 		{
-			int		previousValue = saveStack.top();
-			saveStack.pop();
-			int		newValue = saveStack.top() - '0';
-			saveStack.pop();
-			char	newOperand = saveStack.top();
-			saveStack.pop();
-			saveStack.push(operationStack(previousValue, newValue, newOperand));
-		}
-		std::cout << saveStack.top() << std::endl;
-	}
+            int number = atoi(token.c_str());
+            numbers.push(number);
+        }
+		else if (isOperand(token[0])) 
+		{
+            if (numbers.size() < 2) 
+			{
+                std::cout << "\x1b[38;5;205mError: Not enough numbers for the operation\x1b[0m" << std::endl;
+                return;
+            }
+
+            int b = numbers.top(); numbers.pop();
+            int a = numbers.top(); numbers.pop();
+
+            switch (token[0]) {
+                case '+': numbers.push(a + b); break;
+                case '-': numbers.push(a - b); break;
+                case '*': numbers.push(a * b); break;
+                case '/':
+                    if (b == 0) {
+                        std::cout << "\x1b[38;5;205mError: Division by zero\x1b[0m" << std::endl;
+                        return;
+                    }
+                    numbers.push(a / b);
+                    break;
+                default:
+                    std::cout << "\x1b[38;5;205mError: Invalid operator\x1b[0m" << std::endl;
+                    return;
+            }
+        }
+    }
+
+    if (numbers.size() == 1) {
+        std::cout << "Result: \x1b[38;5;129m" << numbers.top() << "\x1b[0m" << std::endl;
+    } else {
+        std::cout << "\x1b[38;5;205mError: Invalid expression format\x1b[0m" << std::endl;
+    }
 }

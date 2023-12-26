@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:22:07 by tas               #+#    #+#             */
-/*   Updated: 2023/11/23 22:59:33 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 13:53:34 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include <fstream>
 #include <cstdlib>
 #include <sstream>
-
 
 /******************************************************************************/
 /*                                   Classes                                  */
@@ -48,9 +47,6 @@ class BitcoinExchange
 		int		printResult(std::string line);
     	std::map<std::string, float>::iterator ite;
 		float	findClosest(std::string lineSub);
-		
-		
-		
 
 	private:
     	std::map<std::string, float> _data;
