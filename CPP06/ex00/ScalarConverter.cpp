@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:00:19 by tas               #+#    #+#             */
-/*   Updated: 2023/12/19 21:44:44 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/26 16:35:59 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <sstream>
 
 /* constructors and destructor */
 ScalarConverter::ScalarConverter()

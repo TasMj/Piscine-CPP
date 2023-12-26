@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:00:09 by tas               #+#    #+#             */
-/*   Updated: 2023/12/19 20:12:29 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/26 16:35:25 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include <iomanip> //WIP
+#include <sstream>
+#include <iomanip>
 
 /******************************************************************************/
 /*                                 Includes                                   */

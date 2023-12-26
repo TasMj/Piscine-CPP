@@ -6,12 +6,11 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:01:58 by tas               #+#    #+#             */
-/*   Updated: 2023/12/16 01:40:43 by tas              ###   ########.fr       */
+/*   Updated: 2023/12/26 16:33:16 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-#include <cstdio>
 
 #define MAX_VAL 750
 int main(int, char**)
