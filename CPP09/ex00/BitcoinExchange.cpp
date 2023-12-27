@@ -6,7 +6,7 @@
 /*   By: tmejri <tmejri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:22:46 by tas               #+#    #+#             */
-/*   Updated: 2023/12/20 09:39:26 by tmejri           ###   ########.fr       */
+/*   Updated: 2023/12/27 13:13:18 by tmejri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ bool	checkLastNb(std::string str)
 		std::cout << "\x1b[38;5;205mError: not a positif number\x1b[0m" << std::endl;
 		return (false);
 	}
-	else if (l > 1001)
+	else if (l > 1000)
 	{
 		std::cout << "\x1b[38;5;205mError: too large a number\x1b[0m" << std::endl;
 		return (false);
